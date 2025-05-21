@@ -1,0 +1,6 @@
+WITH CTE AS (
+    SELECT *, 
+           ROW_NUMBER() OVER (PARTITION BY EmployeeID ORDER BY ID) AS rn
+    FROM [User]
+)
+DELETE FROM CTE WHERE rn > 1;
